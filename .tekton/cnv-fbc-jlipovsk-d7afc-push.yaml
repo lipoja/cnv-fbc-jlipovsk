@@ -400,11 +400,11 @@ spec:
     #     operator: in
     #     values:
     #     - "false"
-    # workspaces:
-    # - name: git-auth
-    #   optional: true
-    # - name: netrc
-    #   optional: true
+    workspaces:
+    - name: git-auth
+      optional: true
+    - name: netrc
+      optional: true
   taskRunTemplate:
     serviceAccountName: build-pipeline-cnv-fbc-jlipovsk-d7afc
   workspaces:
