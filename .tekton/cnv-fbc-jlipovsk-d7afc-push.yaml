@@ -178,7 +178,7 @@ spec:
       - name: SOURCE_ARTIFACT
         value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
       runAfter:
-      - prefetch-dependencies
+      - clone-repository
       taskRef:
         params:
         - name: url
@@ -247,7 +247,7 @@ spec:
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
       runAfter:
-      - fbc-generate-catalog-oci-ta
+      - clone-repository
       taskRef:
         params:
         - name: name
