@@ -173,10 +173,10 @@ spec:
       workspaces:
       - name: basic-auth
         workspace: git-auth
-    - name: fbc-generate-catalog-oci-ta
+    - name: run-opm-command-oci-ta
       params:
       - name: SOURCE_ARTIFACT
-        value: $(tasks.prefetch-dependencies.results.SOURCE_ARTIFACT)
+        value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       runAfter:
       - clone-repository
       taskRef:
@@ -186,7 +186,7 @@ spec:
         - name: revision
           value: main
         - name: pathInRepo
-          value: task/fbc-generate-catalog-oci-ta/0.1/fbc-generate-catalog-oci-ta.yaml
+          value: task/run-opm-command-oci-ta/0.1/run-opm-command-oci-ta.yaml
         resolver: git
     - name: prefetch-dependencies
       params:
