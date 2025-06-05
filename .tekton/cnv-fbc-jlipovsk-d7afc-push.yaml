@@ -181,6 +181,8 @@ spec:
         value: $(params.output-image).opm
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
+      - name: OPM_ARGS
+        value: ["validate", "."]
       runAfter:
       - clone-repository
       taskRef:
