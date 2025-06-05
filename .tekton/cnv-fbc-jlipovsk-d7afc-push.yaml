@@ -30,11 +30,7 @@ spec:
     value: v4.16/catalog.Dockerfile
   - name: path-context
     value: v4.16
-  - name: fbcCustomOpmArgs
-    value:
-      - "validate"
-      - "."
-  pipelineSpec: # Vložená definice Pipeline
+  pipelineSpec:
     description: |
       This pipeline is ideal  for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
 
@@ -117,10 +113,6 @@ spec:
         set of values is determined by the configuration of the multi-platform-controller.
       name: build-platforms
       type: array
-    - name: fbcCustomOpmArgs
-      type: array
-      description: "Arguments for the custom OPM command run by run-opm-command-oci-ta."
-      default: ["validate", "."] # Výchozí hodnota, pokud není specifikováno v PipelineRun
     results:
     - description: ""
       name: IMAGE_URL
@@ -186,9 +178,9 @@ spec:
       - name: SOURCE_ARTIFACT
         value: $(tasks.clone-repository.results.SOURCE_ARTIFACT)
       - name: ociStorage
-        value: $(params.output-image)-opm-catalog
-      - name: OPM_ARGS
-        value: $(params.fbcCustomOpmArgs)
+        value: $(params.output-image).opm
+      - name: ociArtifactExpiresAfter
+        value: $(params.image-expires-after)
       runAfter:
       - clone-repository
       taskRef:
@@ -258,9 +250,8 @@ spec:
         value: $(tasks.prefetch-dependencies.results.CACHI2_ARTIFACT)
       - name: IMAGE_APPEND_PLATFORM
         value: "true"
-      runAfter: # Musí běžet po dokončení run-opm-command A prefetch-dependencies
-      - run-opm-command
-      - prefetch-dependencies
+      runAfter:
+      - clone-repository
       taskRef:
         params:
         - name: name
