@@ -120,6 +120,7 @@ spec:
     - name: fbcCustomOpmArgs
       type: array
       description: "Arguments for the custom OPM command run by run-opm-command-oci-ta."
+      default: ["validate", "."] # Výchozí hodnota, pokud není specifikováno v PipelineRun
     results:
     - description: ""
       name: IMAGE_URL
