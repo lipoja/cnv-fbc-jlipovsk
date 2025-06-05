@@ -113,6 +113,10 @@ spec:
         set of values is determined by the configuration of the multi-platform-controller.
       name: build-platforms
       type: array
+    - name: fbcCustomOpmArgs
+      type: array
+      description: "Arguments for the custom OPM command (run-opm-command-oci-ta)."
+      default: [ "validate", "." ]
     results:
     - description: ""
       name: IMAGE_URL
@@ -181,6 +185,8 @@ spec:
         value: $(params.output-image).opm
       - name: ociArtifactExpiresAfter
         value: $(params.image-expires-after)
+      - name: OPM_ARGS
+        value: $(params.fbcCustomOpmArgs)
       runAfter:
       - clone-repository
       taskRef:
