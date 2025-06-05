@@ -32,8 +32,7 @@ spec:
     value: v4.16
   - name: opm_args
     value:
-    - "validate"
-    - "."
+    - "version"
   pipelineSpec:
     description: |
       This pipeline is ideal  for building and verifying [file-based catalogs](https://konflux-ci.dev/docs/end-to-end/building-olm/#building-the-file-based-catalog).
