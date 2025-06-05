@@ -113,10 +113,6 @@ spec:
         set of values is determined by the configuration of the multi-platform-controller.
       name: build-platforms
       type: array
-    - name: fbcCustomOpmArgs
-      type: array
-      description: "Arguments for the custom OPM command (run-opm-command-oci-ta)."
-      default: [ "validate", "." ] # Příklad default hodnoty
     results:
     - description: ""
       name: IMAGE_URL
